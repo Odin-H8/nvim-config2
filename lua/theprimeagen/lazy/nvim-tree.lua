@@ -3,7 +3,7 @@
 return {
     "nvim-tree/nvim-tree.lua",
     lazy = false,
-    config = function ()
+    config = function()
         local api = require("nvim-tree.api")
 
         require("nvim-tree").setup({
@@ -17,7 +17,7 @@ return {
                 group_empty = true,
             },
             filters = {
-                dotfiles = true,
+                dotfiles = false,
             },
         })
         vim.keymap.set("n", "<leader>n", api.tree.toggle)

@@ -1,91 +1,42 @@
-function ColorMyPencils(color)
-	color = color or "rose-pine-moon"
-	vim.cmd.colorscheme(color)
-
-	vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-	vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
-end
-
 return {
+    "navarasu/onedark.nvim",
+    config = function ()
+        require('onedark').setup  {
+            -- Main options --
+            style = 'deep', -- Default theme style. Choose between 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer' and 'light'
+            transparent = false,  -- Show/hide background
+            term_colors = true, -- Change terminal color as per the selected theme style
+            ending_tildes = false, -- Show the end-of-buffer tildes. By default they are hidden
+            cmp_itemkind_reverse = false, -- reverse item kind highlights in cmp menu
 
-    {
-        "erikbackman/brightburn.vim",
-    },
+            -- toggle theme style ---
+            toggle_style_key = '<leader>t', -- keybind to toggle theme style. Leave it nil to disable it, or set it to a string, for example "<leader>ts"
+            toggle_style_list = {'deep', 'warm', 'warmer', 'darker', 'cool'}, -- List of styles to toggle between
 
-    {
-        "folke/tokyonight.nvim",
-        lazy = false,
-        opts = {},
-        config = function()
-            ColorMyPencils()
-        end
-    },
-    {
-        "ellisonleao/gruvbox.nvim",
-        name = "gruvbox",
-        config = function()
-            require("gruvbox").setup({
-                terminal_colors = true, -- add neovim terminal colors
-                undercurl = true,
-                underline = false,
-                bold = true,
-                italic = {
-                    strings = false,
-                    emphasis = false,
-                    comments = false,
-                    operators = false,
-                    folds = false,
-                },
-                strikethrough = true,
-                invert_selection = false,
-                invert_signs = false,
-                invert_tabline = false,
-                invert_intend_guides = false,
-                inverse = true, -- invert background for search, diffs, statuslines and errors
-                contrast = "", -- can be "hard", "soft" or empty string
-                palette_overrides = {},
-                overrides = {},
-                dim_inactive = false,
-                transparent_mode = false,
-            })
-        end,
-    },
-    {
-        "folke/tokyonight.nvim",
-        config = function()
-            require("tokyonight").setup({
-                -- your configuration comes here
-                -- or leave it empty to use the default settings
-                style = "storm", -- The theme comes in three styles, `storm`, `moon`, a darker variant `night` and `day`
-                transparent = true, -- Enable this to disable setting the background color
-                terminal_colors = true, -- Configure the colors used when opening a `:terminal` in Neovim
-                styles = {
-                    -- Style to be applied to different syntax groups
-                    -- Value is any valid attr-list value for `:help nvim_set_hl`
-                    comments = { italic = false },
-                    keywords = { italic = false },
-                    -- Background styles. Can be "dark", "transparent" or "normal"
-                    sidebars = "dark", -- style for sidebars, see below
-                    floats = "dark", -- style for floating windows
-                },
-            })
-        end
-    },
+            -- Change code style ---
+            -- Options are italic, bold, underline, none
+            -- You can configure multiple style with comma separated, For e.g., keywords = 'italic,bold'
+            code_style = {
+                comments = 'italic',
+                keywords = 'none',
+                functions = 'none',
+                strings = 'none',
+                variables = 'none'
+            },
 
-    {
-        "rose-pine/neovim",
-        name = "rose-pine",
-        config = function()
-            require('rose-pine').setup({
-                disable_background = true,
-                styles = {
-                    italic = false,
-                },
-            })
+            -- Lualine options --
+            lualine = {
+                transparent = false, -- lualine center bar transparency
+            },
 
-            ColorMyPencils();
-        end
-    },
+            -- Plugins Config --
+            diagnostics = {
+                darker = true, -- darker colors for diagnostic
+                undercurl = true,   -- use undercurl instead of underline for diagnostics
+                background = true,    -- use background color for virtual text
+            },
+        }
 
-
+        require('onedark').load()
+    end
 }
