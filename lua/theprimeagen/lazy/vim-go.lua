@@ -13,6 +13,8 @@ return {
         vim.g.go_highlight_variable_declarations = 0
         vim.g.go_auto_type_info = 1
         vim.g.go_auto_sameids = 1
-        vim.g.go_doc_popup_window = 1
+
+        vim.keymap.set("n", "S", "<Cmd>:GoDef <CR> <Cmd> <CR>")
+        vim.keymap.set("n", "Z", "<Cmd>:GoDefPop <CR> <Cmd> <CR>")
     end
 }

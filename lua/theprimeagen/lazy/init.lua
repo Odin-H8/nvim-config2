@@ -46,5 +46,32 @@ return {
         config = function ()
             require("nvim-autopairs").setup{}
         end
+    },
+    {
+        "akinsho/bufferline.nvim",
+        config = function ()
+            require("bufferline").setup{}
+
+            function Map(mode, lhs, rhs, opts)
+                local options = { noremap = true, silent = true }
+                if opts then
+                    options = vim.tbl_extend("force", options, opts)
+                end
+                vim.keymap.set(mode, lhs, rhs, options)
+            end
+
+            Map('n', "<Leader>1", "<Cmd>BufferLineGoToBuffer 1 <CR>")
+            Map('n', "<Leader>2", "<Cmd>BufferLineGoToBuffer 2 <CR>")
+            Map('n', "<Leader>3", "<Cmd>BufferLineGoToBuffer 3 <CR>")
+            Map('n', "<Leader>4", "<Cmd>BufferLineGoToBuffer 4 <CR>")
+            Map('n', "<Leader>5", "<Cmd>BufferLineGoToBuffer 5 <CR>")
+            Map('n', "<Leader>6", "<Cmd>BufferLineGoToBuffer 6 <CR>")
+            Map('n', "<Leader>7", "<Cmd>BufferLineGoToBuffer 7 <CR>")
+            Map('n', "<Leader>8", "<Cmd>BufferLineGoToBuffer 8 <CR>")
+            Map('n', "<Leader>9", "<Cmd>BufferLineGoToBuffer 9 <CR>")
+
+            Map('n', "<Leader>-", "<Cmd>BufferLineCycleNext <CR>")
+            Map('n', "<Leader>.", "<Cmd>BufferLineCyclePrev <CR>")
+        end
     }
 }
