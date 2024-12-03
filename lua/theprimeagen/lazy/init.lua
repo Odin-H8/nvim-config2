@@ -72,6 +72,8 @@ return {
 
             Map('n', "<Leader>-", "<Cmd>BufferLineCycleNext <CR>")
             Map('n', "<Leader>.", "<Cmd>BufferLineCyclePrev <CR>")
+
+            Map('n', "<leader>c", "<Cmd>BufferLinePickClose <CR>")
         end
     }
 }
